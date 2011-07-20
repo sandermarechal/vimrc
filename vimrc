@@ -111,3 +111,10 @@ let g:syntastic_enable_signs = 1
 
 " Folding
 set foldmethod=marker
+
+" PHP_CodeSniffer
+let g:phpcs_standard = 'Zend'
+
+" Include host-specific config
+let hostfile='vimrc-' . hostname()
+exe 'runtime! ' . hostfile
