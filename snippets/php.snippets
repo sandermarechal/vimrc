@@ -222,7 +222,7 @@ snippet getset
 	 */
 	public function get${2:Attribute}()
 	{
-		return $this->_$1;
+		return $this->$1;
 	}
 
 	/**
@@ -233,6 +233,6 @@ snippet getset
 	 */
 	public function set$2($$1)
 	{
-		$this->_$1 = $$1;
+		$this->$1 = $$1;
 		return $this;
 	}${4}
