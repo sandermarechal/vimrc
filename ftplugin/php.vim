@@ -60,7 +60,7 @@ nnoremap <buffer> <C-P> :call PhpDocSingle()<CR>
 vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
 
 " Map <CTRL>-H to search phpm for the function name currently under the cursor (insert mode only)
-inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
+" inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " Map <CTRL>-a to alignment function
 vnoremap <buffer> <C-a> :call PhpAlign()<CR>
@@ -70,6 +70,10 @@ vnoremap <buffer> <C-c> :call PhpUnComment()<CR>
 
 " Search class/function definition
 :nmap gx yiw/\(class\<bar>function\)\s\+<C-R>"<CR>
+
+" Show PHP function signature
+inoremap <buffer> <C-H> <ESC>:!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=globpath(&rtp, 'php-funcsummary.txt')<CR><CR>
+nnoremap <buffer> <C-H> :!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=globpath(&rtp, 'php-funcsummary.txt')<CR><CR>
 
 " }}}
 
