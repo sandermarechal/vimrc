@@ -85,6 +85,13 @@ nnoremap <silent> j gj
 inoremap <silent> <Up> <Esc>gka
 inoremap <silent> <Down> <Esc>gja
 
+" Re-select after visual mode indent
+vnoremap < <gv
+vnoremap > >gv
+
+" Force writing files that require root privilege
+cmap w!! %!sudo tee > /dev/null %
+
 " Do not highlight the cursorline
 set nocursorline
 
