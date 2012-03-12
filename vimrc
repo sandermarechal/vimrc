@@ -26,6 +26,9 @@ let python_highlight_numbers = 1
 let python_highlight_builtins = 1
 let python_highlight_exceptions = 1
 
+" Better highlighting for HTML
+let html_no_rendering = 1
+
 " Settings for netrw
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0
@@ -121,6 +124,10 @@ set foldmethod=marker
 
 " PHP_CodeSniffer
 let g:phpcs_standard = 'Zend'
+
+" Disable bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 " Include host-specific config
 let hostfile='vimrc-' . hostname()
