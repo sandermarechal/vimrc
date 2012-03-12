@@ -76,6 +76,9 @@
 :DelimitMateTest	delimitMate.txt	/*:DelimitMateTest*
 :Errors	syntastic.txt	/*:Errors*
 :Explore	pi_netrw.txt	/*:Explore*
+:HLT	hilinks.txt	/*:HLT*
+:HLT!	hilinks.txt	/*:HLT!*
+:HLTm	hilinks.txt	/*:HLTm*
 :Hexplore	pi_netrw.txt	/*:Hexplore*
 :MatchDebug	matchit.txt	/*:MatchDebug*
 :NERDTree	NERD_tree.txt	/*:NERDTree*
@@ -256,6 +259,7 @@ fetch	pi_netrw.txt	/*fetch*
 ftp	pi_netrw.txt	/*ftp*
 g%	matchit.txt	/*g%*
 g:NetrwTopLvlMenu	pi_netrw.txt	/*g:NetrwTopLvlMenu*
+g:Netrw_corehandler	pi_netrw.txt	/*g:Netrw_corehandler*
 g:Netrw_funcref	pi_netrw.txt	/*g:Netrw_funcref*
 g:bufExplorerDefaultHelp	bufexplorer.txt	/*g:bufExplorerDefaultHelp*
 g:bufExplorerDetailedHelp	bufexplorer.txt	/*g:bufExplorerDetailedHelp*
@@ -312,9 +316,11 @@ g:netrw_maxfilenamelen	pi_netrw.txt	/*g:netrw_maxfilenamelen*
 g:netrw_menu	pi_netrw.txt	/*g:netrw_menu*
 g:netrw_mkdir_cmd	pi_netrw.txt	/*g:netrw_mkdir_cmd*
 g:netrw_mousemaps	pi_netrw.txt	/*g:netrw_mousemaps*
+g:netrw_nobeval	pi_netrw.txt	/*g:netrw_nobeval*
 g:netrw_nogx	pi_netrw.txt	/*g:netrw_nogx*
 g:netrw_preview	pi_netrw.txt	/*g:netrw_preview*
 g:netrw_rcp_cmd	pi_netrw.txt	/*g:netrw_rcp_cmd*
+g:netrw_remote_mkdir	pi_netrw.txt	/*g:netrw_remote_mkdir*
 g:netrw_retmap	pi_netrw.txt	/*g:netrw_retmap*
 g:netrw_rm_cmd	pi_netrw.txt	/*g:netrw_rm_cmd*
 g:netrw_rmdir_cmd	pi_netrw.txt	/*g:netrw_rmdir_cmd*
@@ -345,6 +351,13 @@ g:netrw_xstrlen	pi_netrw.txt	/*g:netrw_xstrlen*
 g:snippets_dir	snipMate.txt	/*g:snippets_dir*
 g:snips_author	snipMate.txt	/*g:snips_author*
 global_markfilelist	pi_netrw.txt	/*global_markfilelist*
+hilinks	hilinks.txt	/*hilinks*
+hilinks-contents	hilinks.txt	/*hilinks-contents*
+hilinks-copyright	hilinks.txt	/*hilinks-copyright*
+hilinks-history	hilinks.txt	/*hilinks-history*
+hilinks-manual	hilinks.txt	/*hilinks-manual*
+hilinks.txt	hilinks.txt	/*hilinks.txt*
+hlt	hilinks.txt	/*hlt*
 http	pi_netrw.txt	/*http*
 iI	indent-object.txt	/*iI*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
@@ -406,6 +419,7 @@ netrw-browse-cmds	pi_netrw.txt	/*netrw-browse-cmds*
 netrw-browse-maps	pi_netrw.txt	/*netrw-browse-maps*
 netrw-browser	pi_netrw.txt	/*netrw-browser*
 netrw-browser-options	pi_netrw.txt	/*netrw-browser-options*
+netrw-browser-settings	pi_netrw.txt	/*netrw-browser-settings*
 netrw-browser-var	pi_netrw.txt	/*netrw-browser-var*
 netrw-browsing	pi_netrw.txt	/*netrw-browsing*
 netrw-c	pi_netrw.txt	/*netrw-c*
@@ -454,6 +468,7 @@ netrw-history	pi_netrw.txt	/*netrw-history*
 netrw-horiz	pi_netrw.txt	/*netrw-horiz*
 netrw-i	pi_netrw.txt	/*netrw-i*
 netrw-incompatible	pi_netrw.txt	/*netrw-incompatible*
+netrw-internal-variables	pi_netrw.txt	/*netrw-internal-variables*
 netrw-intro-browse	pi_netrw.txt	/*netrw-intro-browse*
 netrw-leftmouse	pi_netrw.txt	/*netrw-leftmouse*
 netrw-list	pi_netrw.txt	/*netrw-list*
@@ -531,8 +546,10 @@ netrw-rexplore	pi_netrw.txt	/*netrw-rexplore*
 netrw-rightmouse	pi_netrw.txt	/*netrw-rightmouse*
 netrw-s	pi_netrw.txt	/*netrw-s*
 netrw-settings	pi_netrw.txt	/*netrw-settings*
+netrw-settings-window	pi_netrw.txt	/*netrw-settings-window*
 netrw-sexplore	pi_netrw.txt	/*netrw-sexplore*
 netrw-sort	pi_netrw.txt	/*netrw-sort*
+netrw-sort-sequence	pi_netrw.txt	/*netrw-sort-sequence*
 netrw-sortsequence	pi_netrw.txt	/*netrw-sortsequence*
 netrw-source	pi_netrw.txt	/*netrw-source*
 netrw-ssh-hack	pi_netrw.txt	/*netrw-ssh-hack*
@@ -551,7 +568,6 @@ netrw-updir	pi_netrw.txt	/*netrw-updir*
 netrw-urls	pi_netrw.txt	/*netrw-urls*
 netrw-userpass	pi_netrw.txt	/*netrw-userpass*
 netrw-v	pi_netrw.txt	/*netrw-v*
-netrw-var	pi_netrw.txt	/*netrw-var*
 netrw-variables	pi_netrw.txt	/*netrw-variables*
 netrw-vexplore	pi_netrw.txt	/*netrw-vexplore*
 netrw-write	pi_netrw.txt	/*netrw-write*
