@@ -72,8 +72,8 @@ vnoremap <buffer> <C-c> :call PhpUnComment()<CR>
 :nmap gx yiw/\(class\<bar>function\)\s\+<C-R>"<CR>
 
 " Show PHP function signature
-inoremap <buffer> <C-H> <ESC>:!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=globpath(&rtp, 'php-funcsummary.txt')<CR><CR>
-nnoremap <buffer> <C-H> :!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=globpath(&rtp, 'php-funcsummary.txt')<CR><CR>
+inoremap <buffer> <C-S> <ESC>:!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=globpath(&rtp, 'php-funcsummary.txt')<CR><CR>
+nnoremap <buffer> <C-S> :!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=globpath(&rtp, 'php-funcsummary.txt')<CR><CR>
 
 " }}}
 
