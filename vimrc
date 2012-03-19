@@ -132,3 +132,6 @@ autocmd GUIEnter * set visualbell t_vb=
 " Include host-specific config
 let hostfile='vimrc-' . hostname()
 exe 'runtime! ' . hostfile
+
+" Remove trailing whitespace
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
