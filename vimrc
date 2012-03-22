@@ -85,8 +85,6 @@ noremap <F5> :make<CR>
 " Up and down are more logical with g..
 nnoremap <silent> k gk
 nnoremap <silent> j gj
-inoremap <silent> <Up> <Esc>gka
-inoremap <silent> <Down> <Esc>gja
 
 " Re-select after visual mode indent
 vnoremap < <gv
@@ -129,9 +127,30 @@ let g:phpcs_standard = 'Zend'
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" Remove trailing whitespace
+autocmd FileType c,cpp,java,php,javascript autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+" Remap arrow keys
+nnoremap <silent> <Up> :call DelEmptyLineAbove()<CR>
+nnoremap <silent> <Down> :call AddEmptyLineAbove()<CR>
+nnoremap <silent> <C-Up> :call DelEmptyLineBelow()<CR>
+nnoremap <silent> <C-Down> :call AddEmptyLineBelow()<CR>
+nnoremap <silent> <Left> <<
+nnoremap <silent> <Right> >>
+vmap <silent> <Up> [egv
+vmap <silent> <Down> ]egv
+vnoremap <silent> <Left> <gv
+vnoremap <silent> <Right> >gv
+imap <silent> <Up> <Esc>[ei
+imap <silent> <Down> <Esc>]ei
+inoremap <silent> <Left> <C-D>
+inoremap <silent> <Right> <C-T>
+
+" delimitMate settings
+let delimitMate_autoclose=0
+let delimitMate_expand_space=1
+let delimitMate_expand_cr=1
+
 " Include host-specific config
 let hostfile='vimrc-' . hostname()
 exe 'runtime! ' . hostfile
-
-" Remove trailing whitespace
-autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
