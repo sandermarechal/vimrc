@@ -147,7 +147,7 @@ inoremap <silent> <Left> <C-D>
 inoremap <silent> <Right> <C-T>
 
 " delimitMate settings
-let delimitMate_autoclose=0
+let delimitMate_autoclose=1
 let delimitMate_expand_space=1
 let delimitMate_expand_cr=1
 
