@@ -610,6 +610,11 @@ netrw-xfer	pi_netrw.txt	/*netrw-xfer*
 netrw.vim	pi_netrw.txt	/*netrw.vim*
 netrw_filehandler	pi_netrw.txt	/*netrw_filehandler*
 network	pi_netrw.txt	/*network*
+numbers	numbers.txt	/*numbers*
+numbers-configuration	numbers.txt	/*numbers-configuration*
+numbers-credits	numbers.txt	/*numbers-credits*
+numbers-intro	numbers.txt	/*numbers-intro*
+numbers.txt	numbers.txt	/*numbers.txt*
 o_[%	matchit.txt	/*o_[%*
 o_]%	matchit.txt	/*o_]%*
 o_g%	matchit.txt	/*o_g%*
