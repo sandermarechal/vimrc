@@ -22,8 +22,8 @@ set cpo&vim
 
 if exists("g:numbers") || v:version < 703 || &cp
     let &cpo = s:save_cpo
-    echom 'Requires Vim 7.3+'
-    echom 'Failed loading numbers.vim'
+    " echom 'Requires Vim 7.3+'
+    " echom 'Failed loading numbers.vim'
     finish
 endif
 
