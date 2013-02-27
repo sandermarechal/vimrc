@@ -1,0 +1,30 @@
+snippet fun "Function" !b
+${1:public} function ${2:name}(${3})
+{
+    ${VISUAL}$0
+}
+endsnippet
+
+snippet getset "Getter and setter" !b
+/**
+ * Getter for ${1:property}
+ *
+ * @return ${2:string}
+ */
+public function get${1/\w+/\u$0/}()
+{
+    return \$$1;
+}
+
+/**
+ * Setter for $1
+ *
+ * @param $2 \$$1
+ * @return self
+ */
+public function set${1/\w+/\u$0/}(\$$1)
+{
+    \$this->$1 = \$$1;
+    return \$this;
+}${0}
+endsnippet
