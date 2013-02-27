@@ -1,4 +1,0 @@
-" Daffy-specific configuration
-
-" Use a different coding standard
-let g:phpcs_standard = 'Prezent'
