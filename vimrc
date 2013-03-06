@@ -29,6 +29,8 @@ Bundle 'sickill/vim-pasta'
 Bundle 'austintaylor/vim-commaobject'
 Bundle 'beberlei/vim-php-refactor'
 Bundle 'tobyS/vimtip'
+Bundle 'matchit.zip'
+Bundle 'delimitMate.vim'
 
 " Color schemes
 Bundle 'Wombat'
@@ -104,7 +106,7 @@ set wildmode=list:longest,full
 
 " Status line
 set laststatus=2
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F%{fugitive#statusline()}%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
 " Settings for netrw
 let g:netrw_liststyle = 3
@@ -220,6 +222,14 @@ call add(g:vimtip_tips, ":Gstatus, :Gcommit, :Gdiff and :Gblame")
 
 autocmd VimEnter * call vimtip#NextTip()
 autocmd WinEnter * call vimtip#NextTip()
+
+" Fugitive
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
+
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Include host-specific config
 let hostfile='vimrc-' . hostname()

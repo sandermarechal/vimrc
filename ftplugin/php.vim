@@ -7,6 +7,7 @@ nnoremap <buffer> <C-S> :!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=glo
 
 " Map <CTRL>-a to alignment function
 vnoremap <buffer> <C-a> :call PhpAlign()<CR>
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
 " {{{ Alignment
 
