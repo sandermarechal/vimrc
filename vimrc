@@ -31,6 +31,7 @@ Bundle 'beberlei/vim-php-refactor'
 Bundle 'tobyS/vimtip'
 Bundle 'matchit.zip'
 Bundle 'delimitMate.vim'
+Bundle 'lepture/vim-jinja'
 
 " Color schemes
 Bundle 'Wombat'
@@ -62,8 +63,8 @@ let html_no_rendering = 1
 au BufNewFile,BufRead *.ctp setfiletype php
 au BufNewFile,BufRead *.ctp setfiletype phtml
 au BufNewFile,BufRead *.phps setfiletype php
-autocmd BufRead *.twig set filetype=twig
-autocmd BufRead *.html.twig set filetype=htmltwig
+autocmd BufRead *.twig set filetype=jinja
+autocmd BufRead *.html.twig set filetype=htmljinja
 
 " enable line numbering
 set number
@@ -204,7 +205,10 @@ nnoremap <buffer> <C-P> :call pdv#DocumentWithSnip()<CR>
 nnoremap <silent> <leader>s :call argumentrewrap#RewrapArguments()<CR>
 
 " Map ; to add ; to the end of the line, when missing
-noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
+nnoremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
+
+" Screen redraw
+nnoremap <buffer> <M-r> :redraw!<CR>
 
 " VIMTips
 let g:vimtip_tips = []
