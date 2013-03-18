@@ -5,6 +5,30 @@ ${1:public} function ${2:name}(${3})
 }
 endsnippet
 
+snippet isset "Isser and setter" !b
+/**
+ * Isser for ${1:property}
+ *
+ * @return bool
+ */
+public function get${1/\w+/\u$0/}()
+{
+    return \$this->$1;
+}
+
+/**
+ * Setter for $1
+ *
+ * @param bool \$$1
+ * @return self
+ */
+public function set${1/\w+/\u$0/}(\$$1 = true)
+{
+    \$this->$1 = \$$1;
+    return \$this;
+}${0}
+endsnippet
+
 snippet getset "Getter and setter" !b
 /**
  * Getter for ${1:property}
@@ -13,13 +37,51 @@ snippet getset "Getter and setter" !b
  */
 public function get${1/\w+/\u$0/}()
 {
-    return \$$1;
+    return \$this->$1;
 }
 
 /**
  * Setter for $1
  *
  * @param $2 \$$1
+ * @return self
+ */
+public function set${1/\w+/\u$0/}(\$$1)
+{
+    \$this->$1 = \$$1;
+    return \$this;
+}${0}
+endsnippet
+
+snippet is "Isser" !b
+/**
+ * Isser for ${1:property}
+ *
+ * @return bool
+ */
+public function get${1/\w+/\u$0/}()
+{
+    return \$this->$1;
+}${0}
+endsnippet
+
+snippet get "Getter" !b
+/**
+ * Getter for ${1:property}
+ *
+ * @return ${2:string}
+ */
+public function get${1/\w+/\u$0/}()
+{
+    return \$this->$1;
+}${0}
+endsnippet
+
+snippet set "Setter" !b
+/**
+ * Setter for ${1:property}
+ *
+ * @param ${2:string} \$$1
  * @return self
  */
 public function set${1/\w+/\u$0/}(\$$1)
