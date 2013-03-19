@@ -64,7 +64,7 @@ au BufNewFile,BufRead *.ctp setfiletype php
 au BufNewFile,BufRead *.ctp setfiletype phtml
 au BufNewFile,BufRead *.phps setfiletype php
 autocmd BufRead *.twig set filetype=jinja
-autocmd BufRead *.html.twig set filetype=htmljinja
+autocmd BufRead *.html.twig set filetype=jinja
 
 " enable line numbering
 set number
