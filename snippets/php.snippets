@@ -90,3 +90,82 @@ public function set${1/\w+/\u$0/}(\$$1)
     return \$this;
 }${0}
 endsnippet
+
+snippet getset1n "Get, add and remove for 1:n relation" !b
+/**
+ * Getter for ${1:property}
+ *
+ * @return ArrayCollection
+ */
+public function get${1/\w+/\u$0/}()
+{
+    return \$this->$1;
+}
+
+/**
+ * Add ${2:${1/\w$//}}
+ *
+ * @param ${2/\w+/\u$0/} \$$2
+ * @return self
+ */
+public function add${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
+{
+    if (!\$this->$1->contains(\$$2)) {
+        \$this->$1[] = \$$2;
+        \$$2->set${3:Reverse}(\$this);
+    }
+
+    return \$this;
+}
+
+/**
+ * Remove $2
+ *
+ * @param ${2/\w+/\u$0/} \$$2
+ * @return self
+ */
+public function remove${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
+{
+    if (\$this->$1->removeElement(\$$2)) {
+        \$$2->set$3(null);
+    }
+
+    return \$this;
+}
+endsnippet
+
+snippet getsetn1 "Get and set for n:1 relation" !b
+/**
+ * Getter for ${1:property}
+ *
+ * @return ${1/\w+/\u$0/}
+ */
+public function get${1/\w+/\u$0/}()
+{
+    return \$this->$1;
+}
+
+/**
+ * Setter for $1
+ *
+ * @param ${1/\w+/\u$0/} \$$1
+ * @return self
+ */
+public function set${1/\w+/\u$0/}(${1/\w+/\u$0/} \$$1 = null)
+{
+    if (\$this->$1 == \$$1) {
+        return \$this;
+    }
+
+    \$old = \$this->$1;
+    \$this->$1 = \$$1;
+
+    if (\$old !== null) {
+        \$old->remove${2:Reverse}(\$this);
+    }
+
+    if (\$$1 !== null) {
+        \$$1->add$2(\$this);
+    }
+}
+endsnippet
