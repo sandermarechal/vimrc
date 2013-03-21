@@ -212,15 +212,15 @@ nnoremap <buffer> <M-r> :redraw!<CR>
 
 " VIMTips
 let g:vimtip_tips = []
-call add(g:vimtip_tips, "Extract selection into private method <\em>")
-call add(g:vimtip_tips, "Extract argument into variable <\ev>")
-call add(g:vimtip_tips, "Extract local variable into class property <\ep>")
-call add(g:vimtip_tips, "Rename local variable <\rlv>")
-call add(g:vimtip_tips, "Rename class variable <\rcv>")
+call add(g:vimtip_tips, "Extract selection into private method <\\\\em>")
+call add(g:vimtip_tips, "Extract argument into variable <\\\\ev>")
+call add(g:vimtip_tips, "Extract local variable into class property <\\\\ep>")
+call add(g:vimtip_tips, "Rename local variable <\\\\rlv>")
+call add(g:vimtip_tips, "Rename class variable <\\\\rcv>")
 call add(g:vimtip_tips, ":UltiSnipsEdit to edit snips for current filetype")
 call add(g:vimtip_tips, ":e %% to edit file in current directory")
 call add(g:vimtip_tips, "Smart rename with :Subvert/parent{,s}/child{,ren}/g")
-call add(g:vimtip_tips, "Use <\s> to rewrap long argument list on multiple lines")
+call add(g:vimtip_tips, "Use <\\\\s> to rewrap long argument list on multiple lines")
 call add(g:vimtip_tips, "<,> is a comma text object")
 call add(g:vimtip_tips, ":Gstatus, :Gcommit, :Gdiff and :Gblame")
 
