@@ -53,6 +53,23 @@ endfunc
 
 " }}} 
 
+" {{{ Find namespace
+
+func! PhpNamespace(suffix)
+    let l:lnr = 0
+    while l:lnr < line('$')
+        let l:str = matchstr(getline(l:lnr), '^\s*namespace\s\+[^;]\+')
+        if len(l:str)
+            return substitute(l:str, '^\s*namespace\s\+', '', '') . a:suffix 
+        endif
+        let l:lnr = l:lnr + 1
+    endwhile
+
+    return ''
+endfunc
+
+" }}} 
+
 " {{{ Convert path to namespace
 
 let g:php_source_prefixes = ['src/main/php/', 'src/main/', 'src/', 'lib/']
