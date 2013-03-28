@@ -198,7 +198,7 @@ let g:UltiSnipsSnippetsDir = $HOME . "/.vim/snippets/"
 let g:UltiSnipsSnippetDirectories = ["snippets"]
 
 " Configure PDV
-let g:pdv_template_dir = $HOME . "/.vim/bundle/pdv/templates_snip"
+let g:pdv_template_dir = $HOME . "/.vim/templates/pdv/"
 nnoremap <buffer> <C-P> :call pdv#DocumentWithSnip()<CR>
 
 " Argumentrewrap binding
