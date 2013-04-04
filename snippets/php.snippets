@@ -1,3 +1,10 @@
+snippet var "Class property" !b
+/**
+ * @var ${2:string}
+ */
+private \$${1:property};${0}
+endsnippet
+
 snippet fun "Function" !b
 ${1:public} function ${2:name}(${3})
 {
@@ -172,22 +179,31 @@ endsnippet
 
 snippet col "Doctrine column" !b
 /**
- * @ORM\Column(type="${2:string}")
+ * @ORM\Column(name="${3:${1/[A-Z]{1}/_\l$0/}}", type="${2:string}")
+ */
+private \$${1:property};${0}
+endsnippet
+
+snippet colid "Doctrine ID column" !b
+/**
+ * @ORM\Id
+ * @ORM\GeneratedValue(strategy="IDENTITY")
+ * @ORM\Column(name="${3:${1/[A-Z]{1}/_\l$0/}}", type="${2:integer}")
  */
 private \$${1:property};${0}
 endsnippet
 
 snippet col1n "Doctrine OneToMany" !b
 /**
- * @ORM\OneToMany(targetEntity="${2:`!v PhpNamespace('\')`}${3:Entity}"${4:, mappedBy="${5:network}"})
+ * @ORM\OneToMany(targetEntity="${2:`!v PhpNamespace('\')`}${3:Entity}"${4:, mappedBy="${5:mapped}"})
  */
 private \$${1:property};${0}
 endsnippet
 
 snippet coln1 "Doctrine ManyToOne" !b
 /**
- * @ORM\ManyToOne(targetEntity="${2:`!v PhpNamespace('\')`}${3:Entity}"${4:, inversedBy="${5:network}"})${6:
- * @ORM\JoinColumn()}
+ * @ORM\ManyToOne(targetEntity="${2:`!v PhpNamespace('\')`}${3:Entity}"${4:, inversedBy="${5:inverse}"})${6:
+ * @ORM\JoinColumn(name="${3:${1/[A-Z]{1}/_\l$0/}_id}", referencedColumnName="${7:id}")}
  */
 private \$${1:property};${0}
 endsnippet
