@@ -238,3 +238,11 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Include host-specific config
 let hostfile='vimrc-' . hostname()
 exe 'runtime! ' . hostfile
+
+" Syntastic
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['php'],
+                           \ 'passive_filetypes': ['yaml']}
+
+
+let g:syntastic_php_checkers=['php']
