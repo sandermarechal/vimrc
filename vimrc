@@ -32,6 +32,7 @@ Bundle 'tobyS/vimtip'
 Bundle 'matchit.zip'
 Bundle 'delimitMate.vim'
 Bundle 'lepture/vim-jinja'
+Bundle 'michaeljsmith/vim-indent-object'
 
 " Color schemes
 Bundle 'Wombat'
