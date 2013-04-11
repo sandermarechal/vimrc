@@ -9,6 +9,9 @@ nnoremap <buffer> <C-S> :!grep '^ \?\w\+ <C-R>=expand("<cword>")<CR>(' <C-R>=glo
 vnoremap <buffer> <C-a> :call PhpAlign()<CR>
 nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
+" Map ; to add ; to the end of the line, when missing
+noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
+
 " {{{ Alignment
 
 func! PhpAlign() range
