@@ -35,6 +35,8 @@ Bundle 'matchit.zip'
 Bundle 'delimitMate.vim'
 Bundle 'lepture/vim-jinja'
 Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'majutsushi/tagbar'
+Bundle 'techlivezheng/tagbar-phpctags'
 
 if v:version >= 703
     Bundle 'myusuf3/numbers.vim'
@@ -258,3 +260,7 @@ let g:syntastic_php_checkers=['php']
 let delimitMate_autoclose=1
 let delimitMate_expand_space=1
 let delimitMate_expand_cr=1
+
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_autoclose=1
