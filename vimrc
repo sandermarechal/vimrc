@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 " Bundles
 Bundle 'sandermarechal/emptylines'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'bufexplorer.zip'
 Bundle 'tpope/vim-haml'
 Bundle 'StanAngeloff/php.vim'
