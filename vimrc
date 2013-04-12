@@ -36,6 +36,10 @@ Bundle 'delimitMate.vim'
 Bundle 'lepture/vim-jinja'
 Bundle 'michaeljsmith/vim-indent-object'
 
+if v:version >= 703
+    Bundle 'myusuf3/numbers.vim'
+endif
+
 " Color schemes
 Bundle 'Wombat'
 Bundle 'desert256.vim'
