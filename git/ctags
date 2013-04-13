@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+trap "rm -f .git/tags.$$" EXIT
+phpctags -R -f.git/tags.$$ --exclude=.git .
+mv .git/tags.$$ .git/tags
