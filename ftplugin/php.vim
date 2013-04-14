@@ -12,6 +12,9 @@ nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 " Map ; to add ; to the end of the line, when missing
 noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 
+" Omnicompletion
+au FileType php set omnifunc=phpcomplete#CompletePHP
+
 " {{{ Alignment
 
 func! PhpAlign() range

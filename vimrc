@@ -37,6 +37,7 @@ Bundle 'lepture/vim-jinja'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'majutsushi/tagbar'
 Bundle 'techlivezheng/tagbar-phpctags'
+Bundle 'shawncplus/phpcomplete.vim'
 
 if v:version >= 703
     Bundle 'myusuf3/numbers.vim'
