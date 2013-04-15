@@ -33,39 +33,39 @@ snippet for "for"
 {% endfor %}$0
 endsnippet
 
-snippet set "set"
+snippet set "set" w
 {% set ${1:var} = ${2:value} %}$0
 endsnippet
 
-snippet }} "}}"
+snippet }} "}}" w
 {{ ${1} }}$0
 endsnippet
 
-snippet %% "%%"
+snippet %% "%%" w
 {% ${1} %}$0
 endsnippet
 
-snippet ## "##"
+snippet ## "##" w
 {# ${1} #}$0
 endsnippet
 
-snippet block "block"
+snippet block "block" w
 {% block ${1:name} %}${2}{% endblock %}$0
 endsnippet
 
-snippet debug "Debug a variable or object" !b
+snippet debug "Debug a variable or object" w
 {% debug ${1:variable} %}$0
 endsnippet
 
-snippet tr "trans"
+snippet tr "trans" w
 {{ '${1:message}'|trans${2:(\{'%${3:key}%': ${4:value}\})} }}$0
 endsnippet
 
-snippet trc "transchoice"
+snippet trc "transchoice" w
 {{ '${1:message}'|transchoice(${2:count}${3:, \{'%${4:key}%': ${5:value}\}}) }}$0
 endsnippet
 
-snippet tra "trans block"
+snippet tra "trans block" w
 {% trans${1: with \{'%${2:key}%': ${3:value}\}} %}${6:message}{% endtrans %}$0
 endsnippet
 
