@@ -28,9 +28,9 @@ snippet else "else"
 endsnippet
 
 snippet for "for"
-{% for ${2:var} in ${1:list} %}
-	${VISUAL}${3:\{\{ $2 \}\}}
-{% endfor %}$0
+{% for ${1:var} in ${2:list} %}
+	${VISUAL}${0:\{\{ $1 \}\}}
+{% endfor %}
 endsnippet
 
 snippet set "set" w
