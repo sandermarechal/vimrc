@@ -39,10 +39,6 @@ Bundle 'majutsushi/tagbar'
 Bundle 'techlivezheng/tagbar-phpctags'
 Bundle 'shawncplus/phpcomplete.vim'
 
-if v:version >= 703
-    Bundle 'myusuf3/numbers.vim'
-endif
-
 " Color schemes
 Bundle 'Wombat'
 Bundle 'desert256.vim'
