@@ -37,6 +37,7 @@ Bundle 'lepture/vim-jinja'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'majutsushi/tagbar'
 Bundle 'shawncplus/phpcomplete.vim'
+Bundle 'ervandew/supertab'
 
 " Color schemes
 Bundle 'Wombat'
@@ -263,3 +264,9 @@ let g:tagbar_autoclose=1
 
 " phpcomplete
 let g:phpcomplete_parse_docblock_comments = 1
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
+
+" Omnicompletion
+set omnifunc=syntaxcomplete#Complete
