@@ -1,5 +1,5 @@
 #!/bin/sh
 set -e
 trap "rm -f .git/tags.$$" EXIT
-phpctags -R -f.git/tags.$$ --exclude=.git .
+ctags --tag-relative -R -f.git/tags.$$ --exclude=.git --fields=+aimS --languages=php .
 mv .git/tags.$$ .git/tags

@@ -36,7 +36,6 @@ Bundle 'delimitMate.vim'
 Bundle 'lepture/vim-jinja'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'majutsushi/tagbar'
-Bundle 'techlivezheng/tagbar-phpctags'
 Bundle 'shawncplus/phpcomplete.vim'
 
 " Color schemes
@@ -261,3 +260,6 @@ let delimitMate_expand_cr=1
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_autoclose=1
+
+" phpcomplete
+let g:phpcomplete_parse_docblock_comments = 1
