@@ -38,6 +38,8 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'majutsushi/tagbar'
 Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'ervandew/supertab'
+Bundle 'joonty/vdebug.git'
+
 
 " Color schemes
 Bundle 'Wombat'
@@ -251,7 +253,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['yaml']}
 
 
-let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
 let g:syntastic_php_phpcs_args = '--report=csv --standard=PSR2'
 
