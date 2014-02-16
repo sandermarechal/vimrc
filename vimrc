@@ -39,6 +39,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'ervandew/supertab'
 Bundle 'joonty/vdebug.git'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-easymotion'
 
 
 " Color schemes
