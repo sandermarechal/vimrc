@@ -15,6 +15,10 @@ noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 " Omnicompletion
 au FileType php set omnifunc=phpcomplete#CompletePHP
 
+" Tag jumping
+nnoremap <silent> <buffer> <C-]> :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
+nnoremap <silent> <buffer> <C-W><C-]> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
+
 " {{{ Alignment
 
 func! PhpAlign() range

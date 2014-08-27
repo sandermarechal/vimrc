@@ -29,7 +29,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'jakobwesthoff/argumentrewrap'
 Bundle 'sickill/vim-pasta'
 Bundle 'austintaylor/vim-commaobject'
-Bundle 'vim-php/vim-php-refactor'
+Bundle 'vim-php/vim-php-refactoring'
 Bundle 'tobyS/vimtip'
 Bundle 'matchit.zip'
 Bundle 'delimitMate.vim'
@@ -268,8 +268,9 @@ let delimitMate_expand_cr=1
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_autoclose=1
 
-" phpcomplete
+" phpcomplete. Jump defninition manually set in php.vim ftplugin
 let g:phpcomplete_parse_docblock_comments = 1
+let g:phpcomplete_enhance_jump_to_definition = 0
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
