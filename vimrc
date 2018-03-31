@@ -57,7 +57,7 @@ Bundle 'desert256.vim'
 filetype plugin indent on     " required!
 
 " Swap file location
-set dir=/tmp//
+set directory=~/.vim/swapfiles//
 
 " terminal color scheme
 " The gui colorscheme is in .gvimrc
