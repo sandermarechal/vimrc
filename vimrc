@@ -41,6 +41,11 @@ Bundle 'ervandew/supertab'
 Bundle 'joonty/vdebug.git'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'mileszs/ack.vim'
+Bundle 'FooSoft/vim-argwrap'
+Bundle 'leafgarland/typescript-vim'
+Bundle 'posva/vim-vue'
+Bundle 'phpactor/phpactor'
 
 
 " Color schemes
@@ -50,13 +55,16 @@ Bundle 'desert256.vim'
 " Required after Vundle did its job.
 filetype plugin indent on     " required!
 
+" Swap file location
+set dir=/tmp//
+
 " terminal color scheme
 " The gui colorscheme is in .gvimrc
 set t_Co=256
 colorscheme desert256
 
 " Deja Vu font
-set guifont="DejaVu Sans Mono" 10
+set guifont="DejaVu Sans Mono Book" 10
 
 " enable syntax highlighting
 syntax on
@@ -134,7 +142,7 @@ noremap <C-l> <C-w>l
 noremap <F3> :set hlsearch! hlsearch?<CR>
 
 " NERDTree
-noremap <F4> :NERDTreeToggle /home/sander/dev<CR>
+noremap <F4> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 
 " Run makeprg
@@ -181,8 +189,10 @@ nnoremap <silent><C-l> :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!
 
 " Toggle paste with <ins>
 set pastetoggle=<ins>
+
 " Go to insert mode when <ins> pressed in normal mode
 nnoremap <silent> <ins> :setlocal paste!<CR>i
+
 " Switch paste mode off whenever insert mode is left
 autocmd InsertLeave <buffer> se nopaste
 
@@ -203,9 +213,10 @@ let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:UltiSnipsListSnippets = "<M-Tab>"
+
 " Set a custom snippets directory
-let g:UltiSnipsSnippetsDir = $HOME . "/.vim/snippets/"
-let g:UltiSnipsSnippetDirectories = ["snippets"]
+let g:UltiSnipsSnippetsDir = $HOME . "/.vim/ultisnips/"
+let g:UltiSnipsSnippetDirectories = ["ultisnips"]
 
 " Configure PDV
 let g:pdv_template_dir = $HOME . "/.vim/templates/pdv/"
@@ -254,7 +265,6 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['php'],
                            \ 'passive_filetypes': ['yaml']}
 
-
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
 let g:syntastic_php_phpcs_args = '--report=csv --standard=PSR2'
@@ -272,5 +282,17 @@ let g:tagbar_autoclose=1
 let g:phpcomplete_parse_docblock_comments = 1
 let g:phpcomplete_enhance_jump_to_definition = 0
 
+" phpactor
+autocmd FileType php setlocal omnifunc=phpactor#Complete
+nmap <Leader>u :call phpactor#UseAdd()<CR>
+nmap <Leader>mm :call phpactor#ContextMenu()<CR>
+nmap <Leader>o :call phpactor#GotoDefinition()<CR>)
+
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
+
+" Argument wrapping
+nnoremap <silent> <leader>a :ArgWrap<CR>
+
+" Force vertical diffs
+set diffopt+=vertical
