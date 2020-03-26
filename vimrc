@@ -303,3 +303,8 @@ set diffopt+=vertical
 
 " Strip trailing whitespace on save
 autocmd FileType c,cpp,java,php,js autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Lilypond, manually copied from lilypond directory
+filetype off
+set runtimepath+=/home/sander/.vim/bundle/lilypond
+filetype on
