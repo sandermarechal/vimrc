@@ -7,7 +7,7 @@ def isPHPStrictTypes():
 
 def getArgs(group):
     import re
-    word = re.compile('([\w\\\\]+ )?(\$\w+)')
+    word = re.compile('(\??[\w\\\\]+ )?(\$\w+)')
     comma = re.compile(', ?')
     args = []
 
@@ -43,7 +43,21 @@ snippet pub "Public property" !b
 public \$${1:property};${0}
 endsnippet
 
+snippet pub "Public property" "isPHPStrictTypes()" !be
+/**
+ * @var ${2:string}
+ */
+public \$${1:property};${0}
+endsnippet
+
 snippet var "Class property" !b
+/**
+ * @var ${2:string}
+ */
+private \$${1:property};${0}
+endsnippet
+
+snippet var "Class property" "isPHPStrictTypes()" !be
 /**
  * @var ${2:string}
  */
@@ -79,9 +93,6 @@ for i in args:
 endsnippet
 
 snippet con "Constructor" "isPHPStrictTypes()" !bse
-/**
- * Constructor
- */
 ${1:public} function __construct($2)
 {`!p
 snip.shift()
@@ -109,7 +120,7 @@ public function is${1/\w+/\u$0/}()
  * @param bool \$$1
  * @return self
  */
-public function set${1/\w+/\u$0/}(\$$1 = true)
+public function set${1/\w+/\u$0/}(\$$1)
 {
     \$this->$1 = \$$1;
     return \$this;
@@ -117,64 +128,15 @@ public function set${1/\w+/\u$0/}(\$$1 = true)
 endsnippet
 
 snippet isset "Isser and setter" "isPHPStrictTypes()" !be
-/**
- * Is ${1:property}
- */
 public function is${1/\w+/\u$0/}(): bool
 {
-	return \$this->$1;
+	return \$this->${1:property};
 }
 
-/**
- * Set $1
- */
-public function set${1/\w+/\u$0/}(bool \$$1 = true): self
+public function set${1/\w+/\u$0/}(bool \$$1): self
 {
 	\$this->$1 = \$$1;
 	return \$this;
-}${0}
-endsnippet
-
-snippet setis "Setter and isser" !b
-/**
- * Set ${1:property}
- *
- * @param bool \$$1
- * @return self
- */
-public function set${1/\w+/\u$0/}(\$$1 = true)
-{
-	\$this->$1 = \$$1;
-	return \$this;
-}
-
-/**
- * Is $1
- *
- * @return bool
- */
-public function is${1/\w+/\u$0/}()
-{
-	return \$this->$1;
-}${0}
-endsnippet
-
-snippet setis "Setter and isser"  "isPHPStrictTypes()" !be
-/**
- * Set ${1:property}
- */
-public function set${1/\w+/\u$0/}(bool \$$1 = true): self
-{
-	\$this->$1 = \$$1;
-	return \$this;
-}
-
-/**
- * Is $1
- */
-public function is${1/\w+/\u$0/}(): bool
-{
-	return \$this->$1;
 }${0}
 endsnippet
 
@@ -203,40 +165,15 @@ public function set${1/\w+/\u$0/}(`!p putTypeHint(snip, t[2])`\$$1${3:`!p putDef
 endsnippet
 
 snippet getset "Getter and setter" "isPHPStrictTypes()" !be
-/**
- * Get ${1:property}
- */
 public function get${1/\w+/\u$0/}(): ${2:string}
 {
-	return \$this->$1;
+	return \$this->${1:property};
 }
 
-/**
- * Set $1
- */
 public function set${1/\w+/\u$0/}($2 \$$1): self
 {
 	\$this->$1 = \$$1;
 	return \$this;
-}${0}
-endsnippet
-
-snippet setget "Setter and getter" "isPHPStrictTypes()" !be
-/**
- * Set ${1:property}
- */
-public function set${1/\w+/\u$0/}(${2:string} \$$1): self
-{
-	\$this->$1 = \$$1;
-	return \$this;
-}
-
-/**
- * Get $1
- */
-public function get${1/\w+/\u$0/}(): $2
-{
-	return \$this->$1;
 }${0}
 endsnippet
 
@@ -253,12 +190,9 @@ public function is${1/\w+/\u$0/}()
 endsnippet
 
 snippet is "Isser" "isPHPStrictTypes()" !be
-/**
- * Is ${1:property}
- */
 public function is${1/\w+/\u$0/}(): bool
 {
-	return \$this->$1;
+	return \$this->${1:property};
 }${0}
 endsnippet
 
@@ -275,12 +209,9 @@ public function get${1/\w+/\u$0/}()
 endsnippet
 
 snippet get "Getter" "isPHPStrictTypes()" !be
-/**
- * Get ${1:property}
- */
 public function get${1/\w+/\u$0/}(): ${2:string}
 {
-	return \$this->$1;
+	return \$this->${1:property};
 }${0}
 endsnippet
 
@@ -299,12 +230,9 @@ public function set${1/\w+/\u$0/}(`!p putTypeHint(snip, t[2])`\$$1${3:`!p putDef
 endsnippet
 
 snippet set "Setter" "isPHPStrictTypes()" !be
-/**
- * Set ${1:property}
- */
 public function set${1/\w+/\u$0/}(${2:string} \$$1): self
 {
-	\$this->$1 = \$$1;
+	\$this->${1:property} = \$$1;
 	return \$this;
 }${0}
 endsnippet
@@ -326,7 +254,7 @@ public function get${1/\w+/\u$0/}()
  * @param ${3:${2/\w+/\u$0/}} \$$2
  * @return self
  */
-public function add${2/\w+/\u$0/}(`!p putTypeHint(snip, t[2])`${2/\w+/\u$0/} \$$2)
+public function add${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
 {
     if (!\$this->$1->contains(\$$2)) {
         \$this->$1[] = \$$2;
@@ -353,34 +281,25 @@ public function remove${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
 endsnippet
 
 snippet getset1n "Get, add and remove for 1:n relation" "isPHPStrictTypes()" !be
-/**
- * Get ${1:property}
- */
 public function get${1/\w+/\u$0/}(): Collection
 {
-	return \$this->$1;
+	return \$this->${1:property};
 }
 
-/**
- * Add ${2:${1/\w$//}}
- */
-public function add${2/\w+/\u$0/}(`!p putTypeHint(snip, t[2])`${2/\w+/\u$0/} \$$2): self
+public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): self
 {
 	if (!\$this->$1->contains(\$$2)) {
 		\$this->$1[] = \$$2;
-		\$$2->set${3:Reverse}(\$this);
+		\$$2->set${5:Reverse}(\$this);
 	}
 
 	return \$this;
 }
 
-/**
- * Remove $2
- */
-public function remove${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2): self
+public function remove$4($3 \$$2): self
 {
 	if (\$this->$1->removeElement(\$$2)) {
-		\$$2->set$3(null);
+		\$$2->set$5(null);
 	}
 
 	return \$this;
@@ -391,7 +310,7 @@ snippet getsetn1 "Get and set for n:1 relation" !b
 /**
  * Get ${1:property}
  *
- * @return ${1/\w+/\u$0/}
+ * @return ${2:${1/\w+/\u$0/}}
  */
 public function get${1/\w+/\u$0/}()
 {
@@ -404,7 +323,7 @@ public function get${1/\w+/\u$0/}()
  * @param ${1/\w+/\u$0/} \$$1
  * @return self
  */
-public function set${1/\w+/\u$0/}(${1/\w+/\u$0/} \$$1 = null)
+public function set${1/\w+/\u$0/}($2 \$$1 = null)
 {
     if (\$this->$1 == \$$1) {
         return \$this;
@@ -414,11 +333,11 @@ public function set${1/\w+/\u$0/}(${1/\w+/\u$0/} \$$1 = null)
     \$this->$1 = \$$1;
 
     if (\$old !== null) {
-        \$old->remove${2:Reverse}(\$this);
+        \$old->remove${3:Reverse}(\$this);
     }
 
     if (\$$1 !== null) {
-        \$$1->add$2(\$this);
+        \$$1->add$3(\$this);
     }
 
     return \$this;
@@ -426,18 +345,12 @@ public function set${1/\w+/\u$0/}(${1/\w+/\u$0/} \$$1 = null)
 endsnippet
 
 snippet getsetn1 "Get and set for n:1 relation" "isPHPStrictTypes()" !be
-/**
- * Get ${1:property}
- */
-public function get${1/\w+/\u$0/}(): ${1/\w+/\u$0/}
+public function get${1/\w+/\u$0/}(): ${2:${1/\w+/\u$0/}}
 {
-	return \$this->$1;
+	return \$this->${1:property};
 }
 
-/**
- * Set $1
- */
-public function set${1/\w+/\u$0/}(${1/\w+/\u$0/} \$$1 = null): self
+public function set${1/\w+/\u$0/}($2 \$$1 = null): self
 {
 	if (\$this->$1 == \$$1) {
 		return \$this;
@@ -447,18 +360,18 @@ public function set${1/\w+/\u$0/}(${1/\w+/\u$0/} \$$1 = null): self
 	\$this->$1 = \$$1;
 
 	if (\$old !== null) {
-		\$old->remove${2:Reverse}(\$this);
+		\$old->remove${3:Reverse}(\$this);
 	}
 
 	if (\$$1 !== null) {
-		\$$1->add$2(\$this);
+		\$$1->add$3(\$this);
 	}
 
 	return \$this;
 }${0}
 endsnippet
 
-snippet getsetnm "Get and set for n:m relations" !b
+snippet getsetmn "Get and set for n:m relations" !b
 /**
  * Get ${1:property}
  *
@@ -497,19 +410,13 @@ public function remove${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
 }${0}
 endsnippet
 
-snippet getsetnm "Get and set for n:m relations" "isPHPStrictTypes()" !be
-/**
- * Get ${1:property}
- */
+snippet getsetmn "Get and set for n:m relations" "isPHPStrictTypes()" !be
 public function get${1/\w+/\u$0/}(): Collection
 {
-	return \$this->$1;
+	return \$this->${1:property};
 }
 
-/**
- * Add ${2:${1/\w$//}}
- */
-public function add${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2): self
+public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): self
 {
 	if (!\$this->$1->contains(\$$2)) {
 		\$this->$1[] = \$$2;
@@ -518,10 +425,7 @@ public function add${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2): self
 	return \$this;
 }
 
-/**
- * Remove $2
- */
-public function remove${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2): self
+public function remove$4($3 \$$2): self
 {
 	\$this->$1->removeElement(\$$2);
 	return \$this;
@@ -535,7 +439,7 @@ use Doctrine\ORM\Mapping as ORM;
  * ${1:Object} entity
  *
  * @ORM\Entity
- * @ORM\Table(name="${1/([A-Z])(([a-z]+)([A-Z]))*([a-z]*)/\L$1(?3:$3_$4)$5\E/}")
+ * @ORM\Table(name="${1/([a-z]*)([A-Z]+)/(?1:$1_)\L$2\E/g}")
  */
 class $1
 {
@@ -545,9 +449,10 @@ endsnippet
 
 snippet col "Doctrine column" !b
 /**
- * @ORM\Column(name="${3:${1/[A-Z]{1}/_\l$0/}}", type="${2:string}")
+ * @ORM\Column(name="${4:${1/([A-Z]+)/_\l$0/g}}", type="${5:string}"${6:, nullable=true})
+ * @var ${7:string}
  */
-private \$${1:property};${0}
+private \$${1:property}${2: = ${3:''}};${0}
 endsnippet
 
 snippet colid "Doctrine ID column" !b
@@ -555,6 +460,7 @@ snippet colid "Doctrine ID column" !b
  * @ORM\Id
  * @ORM\GeneratedValue
  * @ORM\Column(name="id", type="integer")
+ * @var ?int
  */
 private \$id;${0}
 endsnippet
@@ -563,6 +469,7 @@ snippet col11 "Doctrine OneToOne" !b
 /**
  * @ORM\OneToOne(targetEntity="${2:`!v PhpNamespace('\')`${3:Entity}}"${4:, orphanRemoval=true})
  * @ORM\JoinColumn(name="${5:${1/[A-Z]{1}/_\l$0/g}_id}", referencedColumnName="${6:id}"${7:, unique=true}${8:, onDelete="${9:SET NULL}"})
+ * @var $3
  */
 private \$${1:property};${0}
 endsnippet
@@ -570,6 +477,7 @@ endsnippet
 snippet col1n "Doctrine OneToMany" !b
 /**
  * @ORM\OneToMany(targetEntity="${2:`!v PhpNamespace('\')`${3:Entity}}"${4:, mappedBy="${5:mapped}"})
+ * @var Collection<int, $3>
  */
 private \$${1:property};${0}
 endsnippet
@@ -578,17 +486,19 @@ snippet coln1 "Doctrine ManyToOne" !b
 /**
  * @ORM\ManyToOne(targetEntity="${2:`!v PhpNamespace('\')`${3:Entity}}"${4:, inversedBy="${5:inverse}"})
  * @ORM\JoinColumn(name="${6:${1/[A-Z]{1}/_\l$0/g}_id}", referencedColumnName="${7:id}"${8:, onDelete="${9:CASCADE}"}${10:, nullable=false})
+ * @var $3
  */
 private \$${1:property};${0}
 endsnippet
 
-snippet colnm "Doctrine ManyToMany" !b
+snippet colmn "Doctrine ManyToMany" !b
 /**
  * @ORM\ManyToMany(targetEntity="${2:`!v PhpNamespace('\')`${3:Entity}}")
  * @ORM\JoinTable(name="${7:${4/_id//}_${6/_id//}}",
  *      joinColumns={@ORM\JoinColumn(name="${4:entity_id}", referencedColumnName="${5:id}")},
  *      inverseJoinColumns={@ORM\JoinColumn(name="${6:target_id}", referencedColumnName="${7:id}")}
  * )
+ * @var Collection<int, $3>
  */
 private \$${1:property};${0}
 endsnippet
@@ -604,7 +514,7 @@ endsnippet
 
 snippet inh "Inherit docblock"
 /**
- * {@inheritDoc}
+ * {@inheritdoc}
  */
 endsnippet
 

@@ -10,42 +10,43 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Bundles
-Bundle 'sandermarechal/emptylines'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'bufexplorer.zip'
-Bundle 'tpope/vim-haml'
-Bundle 'StanAngeloff/php.vim'
+Bundle 'FooSoft/vim-argwrap'
+Bundle 'Lokaltog/vim-easymotion'
 Bundle 'SirVer/ultisnips'
-Bundle 'scrooloose/syntastic'
-Bundle 'tobyS/vmustache'
-Bundle 'tobyS/pdv'
-Bundle 'tobyS/skeletons.vim'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'jakobwesthoff/argumentrewrap'
-Bundle 'sickill/vim-pasta'
+Bundle 'StanAngeloff/php.vim'
 Bundle 'austintaylor/vim-commaobject'
-Bundle 'vim-php/vim-php-refactoring'
-Bundle 'tobyS/vimtip'
-Bundle 'matchit.zip'
+Bundle 'bufexplorer.zip'
 Bundle 'delimitMate.vim'
-Bundle 'lepture/vim-jinja'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'majutsushi/tagbar'
-Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'ervandew/supertab'
+Bundle 'jakobwesthoff/argumentrewrap'
 Bundle 'joonty/vdebug.git'
 Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'mileszs/ack.vim'
-Bundle 'FooSoft/vim-argwrap'
 Bundle 'leafgarland/typescript-vim'
-Bundle 'posva/vim-vue'
+Bundle 'lepture/vim-jinja'
+Bundle 'majutsushi/tagbar'
+Bundle 'matchit.zip'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'mileszs/ack.vim'
+Bundle 'pangloss/vim-javascript'
 Bundle 'phpactor/phpactor'
+Bundle 'posva/vim-vue'
+Bundle 'sandermarechal/emptylines'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'shawncplus/phpcomplete.vim'
+Bundle 'sickill/vim-pasta'
+Bundle 'tobyS/pdv'
+Bundle 'tobyS/skeletons.vim'
+Bundle 'tobyS/vimtip'
+Bundle 'tobyS/vmustache'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'vim-php/vim-php-refactoring'
 
 
 " Color schemes
@@ -63,8 +64,8 @@ set dir=/tmp//
 set t_Co=256
 colorscheme desert256
 
-" Deja Vu font
-set guifont="DejaVu Sans Mono Book" 10
+" GUI font settings
+set guifont=Hack\ 9
 
 " enable syntax highlighting
 syntax on
@@ -256,6 +257,8 @@ autocmd User fugitive
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+set tags^=./.git/tags;
+
 " Include host-specific config
 let hostfile='vimrc-' . hostname()
 exe 'runtime! ' . hostfile
@@ -265,9 +268,10 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['php'],
                            \ 'passive_filetypes': ['yaml']}
 
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phpstan']
 
 let g:syntastic_php_phpcs_args = '--report=csv --standard=PSR2'
+let g:syntastic_php_phpstan_args = '-c /usr/local/share/php/phpstan.neon'
 
 " delimitMate settings
 let delimitMate_autoclose=1
@@ -296,3 +300,6 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " Force vertical diffs
 set diffopt+=vertical
+
+" Strip trailing whitespace on save
+autocmd FileType c,cpp,java,php,js autocmd BufWritePre <buffer> %s/\s\+$//e

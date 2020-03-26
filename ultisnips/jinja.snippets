@@ -1,7 +1,5 @@
 snippet twig "Standard twig template" b
-{% extends '${1:::base.html.twig}' %}
-
-{% block title %}${2:title}{% endblock %}
+{% extends '${1:base.html.twig}' %}
 
 {% block body %}
     ${VISUAL}$0
@@ -13,7 +11,7 @@ snippet inc "include"
 endsnippet
 
 snippet ext "extends"
-{% extends '${1:::base.html.twig}' %}$0
+{% extends '${1:base.html.twig}' %}$0
 endsnippet
 
 snippet if "if"
@@ -73,22 +71,4 @@ snippet trac "transchoice block"
 {% transchoice ${1:count}${2: with \{'%${3:key}%': ${4:value}\}} %}
     ${VISUAL}$0
 {% endtranschoice %}
-endsnippet
-
-snippet css "CSS block"
-{% block stylesheets %}
-    {{ parent() }}
-    {% stylesheets '${1:file.css}'${2: filter='${3:sass}'} %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-{% endblock %}$0
-endsnippet
-
-snippet js "CSS block"
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts '${1:file.js}'${2: filter='${3:yui_js}'} %}
-        <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}$0
 endsnippet
