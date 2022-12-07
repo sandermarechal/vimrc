@@ -324,3 +324,7 @@ nnoremap <C-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 " Force 4-wide tabs in yaml
 let g:yaml_recommended_style=0
+
+if filereadable(expand("~/.vim/vimrc.local"))
+    source ~/.vim/vimrc.local
+endif
