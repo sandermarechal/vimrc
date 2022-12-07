@@ -2,9 +2,6 @@ global !p
 
 import vim
 
-def isPHPStrictTypes():
-    return re.match('<\?php\s+declare\(strict_types=1\);', '\n'.join(vim.current.window.buffer[0:10]))
-
 def getArgs(group):
     import re
     word = re.compile('(\??[\w\\\\]+ )?(\$\w+)')
@@ -36,63 +33,18 @@ def putDefault(snip, desc):
 
 endglobal
 
-snippet pub "Public property" !b
-/**
- * @var ${2:string}
- */
-public \$${1:property};${0}
-endsnippet
-
-snippet pub "Public property" "isPHPStrictTypes()" !be
-/**
- * @var ${2:string}
- */
-public \$${1:property};${0}
-endsnippet
-
 snippet var "Class property" !b
-/**
- * @var ${2:string}
- */
-private \$${1:property};${0}
-endsnippet
-
-snippet var "Class property" "isPHPStrictTypes()" !be
-/**
- * @var ${2:string}
- */
-private \$${1:property};${0}
+${3:private} ${2:string} \$${1:property}${4: = ${5:''}};${0}
 endsnippet
 
 snippet fun "Function" !b
-${1:public} function ${2:name}(${3})
+${1:public} function ${2:name}(${3}): ${4:void}
 {
     ${VISUAL}$0
 }
 endsnippet
 
 snippet con "Constructor" !bs
-/**
- * Constructor`!p
-args = getArgs(t[2])
-if len(args) > 0:
-    snip += " *"
-for i in args:
-    type = i[0] if i[0] else "mixed "
-    snip.rv += "\n" + snip.mkline(" * @param " + type + i[1])
-`
- */
-${1:public} function __construct($2)
-{`!p
-snip.shift()
-args = getArgs(t[2])
-for i in args:
-    snip+= "$this->" + i[1][1:] + " = " + i[1] + ";"
-`$0
-}
-endsnippet
-
-snippet con "Constructor" "isPHPStrictTypes()" !bse
 ${1:public} function __construct($2)
 {`!p
 snip.shift()
@@ -104,92 +56,30 @@ for i in args:
 endsnippet
 
 snippet isset "Isser and setter" !b
-/**
- * Is ${1:property}
- *
- * @return bool
- */
-public function is${1/\w+/\u$0/}()
-{
-    return \$this->$1;
-}
-
-/**
- * Set $1
- *
- * @param bool \$$1
- * @return self
- */
-public function set${1/\w+/\u$0/}(\$$1)
-{
-    \$this->$1 = \$$1;
-    return \$this;
-}${0}
-endsnippet
-
-snippet isset "Isser and setter" "isPHPStrictTypes()" !be
 public function is${1/\w+/\u$0/}(): bool
 {
 	return \$this->${1:property};
 }
 
-public function set${1/\w+/\u$0/}(bool \$$1): self
+public function set${1/\w+/\u$0/}(bool \$$1): void
 {
 	\$this->$1 = \$$1;
-	return \$this;
 }${0}
 endsnippet
 
 snippet getset "Getter and setter" !b
-/**
- * Get ${1:property}
- *
- * @return ${2:string}
- */
-public function get${1/\w+/\u$0/}()
-{
-    return \$this->$1;
-}
-
-/**
- * Set $1
- *
- * @param $2 \$$1
- * @return self
- */
-public function set${1/\w+/\u$0/}(`!p putTypeHint(snip, t[2])`\$$1${3:`!p putDefault(snip, t[2])`})
-{
-    \$this->$1 = \$$1;
-    return \$this;
-}${0}
-endsnippet
-
-snippet getset "Getter and setter" "isPHPStrictTypes()" !be
 public function get${1/\w+/\u$0/}(): ${2:string}
 {
 	return \$this->${1:property};
 }
 
-public function set${1/\w+/\u$0/}($2 \$$1): self
+public function set${1/\w+/\u$0/}($2 \$$1): void
 {
 	\$this->$1 = \$$1;
-	return \$this;
 }${0}
 endsnippet
 
 snippet is "Isser" !b
-/**
- * Is ${1:property}
- *
- * @return bool
- */
-public function is${1/\w+/\u$0/}()
-{
-    return \$this->$1;
-}${0}
-endsnippet
-
-snippet is "Isser" "isPHPStrictTypes()" !be
 public function is${1/\w+/\u$0/}(): bool
 {
 	return \$this->${1:property};
@@ -197,18 +87,6 @@ public function is${1/\w+/\u$0/}(): bool
 endsnippet
 
 snippet get "Getter" !b
-/**
- * Get ${1:property}
- *
- * @return ${2:string}
- */
-public function get${1/\w+/\u$0/}()
-{
-    return \$this->$1;
-}${0}
-endsnippet
-
-snippet get "Getter" "isPHPStrictTypes()" !be
 public function get${1/\w+/\u$0/}(): ${2:string}
 {
 	return \$this->${1:property};
@@ -216,141 +94,41 @@ public function get${1/\w+/\u$0/}(): ${2:string}
 endsnippet
 
 snippet set "Setter" !b
-/**
- * Set ${1:property}
- *
- * @param ${2:string} \$$1
- * @return self
- */
-public function set${1/\w+/\u$0/}(`!p putTypeHint(snip, t[2])`\$$1${3:`!p putDefault(snip, t[2])`})
-{
-    \$this->$1 = \$$1;
-    return \$this;
-}${0}
-endsnippet
-
-snippet set "Setter" "isPHPStrictTypes()" !be
-public function set${1/\w+/\u$0/}(${2:string} \$$1): self
+public function set${1/\w+/\u$0/}(${2:string} \$$1): void
 {
 	\$this->${1:property} = \$$1;
-	return \$this;
 }${0}
 endsnippet
 
 snippet getset1n "Get, add and remove for 1:n relation" !b
-/**
- * Get ${1:property}
- *
- * @return ArrayCollection
- */
-public function get${1/\w+/\u$0/}()
-{
-    return \$this->$1;
-}
-
-/**
- * Add ${2:${1/\w$//}}
- *
- * @param ${3:${2/\w+/\u$0/}} \$$2
- * @return self
- */
-public function add${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
-{
-    if (!\$this->$1->contains(\$$2)) {
-        \$this->$1[] = \$$2;
-        \$$2->set${4:Reverse}(\$this);
-    }
-
-    return \$this;
-}
-
-/**
- * Remove $2
- *
- * @param ${2/\w+/\u$0/} \$$2
- * @return self
- */
-public function remove${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
-{
-    if (\$this->$1->removeElement(\$$2)) {
-        \$$2->set$4(null);
-    }
-
-    return \$this;
-}${0}
-endsnippet
-
-snippet getset1n "Get, add and remove for 1:n relation" "isPHPStrictTypes()" !be
 public function get${1/\w+/\u$0/}(): Collection
 {
 	return \$this->${1:property};
 }
 
-public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): self
+public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): void
 {
 	if (!\$this->$1->contains(\$$2)) {
 		\$this->$1[] = \$$2;
 		\$$2->set${5:Reverse}(\$this);
 	}
-
-	return \$this;
 }
 
-public function remove$4($3 \$$2): self
+public function remove$4($3 \$$2): void
 {
 	if (\$this->$1->removeElement(\$$2)) {
 		\$$2->set$5(null);
 	}
-
-	return \$this;
 }${0}
 endsnippet
 
 snippet getsetn1 "Get and set for n:1 relation" !b
-/**
- * Get ${1:property}
- *
- * @return ${2:${1/\w+/\u$0/}}
- */
-public function get${1/\w+/\u$0/}()
-{
-    return \$this->$1;
-}
-
-/**
- * Set $1
- *
- * @param ${1/\w+/\u$0/} \$$1
- * @return self
- */
-public function set${1/\w+/\u$0/}($2 \$$1 = null)
-{
-    if (\$this->$1 == \$$1) {
-        return \$this;
-    }
-
-    \$old = \$this->$1;
-    \$this->$1 = \$$1;
-
-    if (\$old !== null) {
-        \$old->remove${3:Reverse}(\$this);
-    }
-
-    if (\$$1 !== null) {
-        \$$1->add$3(\$this);
-    }
-
-    return \$this;
-}${0}
-endsnippet
-
-snippet getsetn1 "Get and set for n:1 relation" "isPHPStrictTypes()" !be
 public function get${1/\w+/\u$0/}(): ${2:${1/\w+/\u$0/}}
 {
 	return \$this->${1:property};
 }
 
-public function set${1/\w+/\u$0/}($2 \$$1 = null): self
+public function set${1/\w+/\u$0/}($2 \$$1 = null): void
 {
 	if (\$this->$1 == \$$1) {
 		return \$this;
@@ -366,69 +144,25 @@ public function set${1/\w+/\u$0/}($2 \$$1 = null): self
 	if (\$$1 !== null) {
 		\$$1->add$3(\$this);
 	}
-
-	return \$this;
 }${0}
 endsnippet
 
 snippet getsetmn "Get and set for n:m relations" !b
-/**
- * Get ${1:property}
- *
- * @return ArrayCollection
- */
-public function get${1/\w+/\u$0/}()
-{
-    return \$this->$1;
-}
-
-/**
- * Add ${2:${1/\w$//}}
- *
- * @param ${2/\w+/\u$0/} \$$2
- * @return self
- */
-public function add${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
-{
-    if (!\$this->$1->contains(\$$2)) {
-        \$this->$1[] = \$$2;
-    }
-
-    return \$this;
-}
-
-/**
- * Remove $2
- *
- * @param ${2/\w+/\u$0/} \$$2
- * @return self
- */
-public function remove${2/\w+/\u$0/}(${2/\w+/\u$0/} \$$2)
-{
-    \$this->$1->removeElement(\$$2);
-    return \$this;
-}${0}
-endsnippet
-
-snippet getsetmn "Get and set for n:m relations" "isPHPStrictTypes()" !be
 public function get${1/\w+/\u$0/}(): Collection
 {
 	return \$this->${1:property};
 }
 
-public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): self
+public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): void
 {
 	if (!\$this->$1->contains(\$$2)) {
 		\$this->$1[] = \$$2;
 	}
-
-	return \$this;
 }
 
-public function remove$4($3 \$$2): self
+public function remove$4($3 \$$2): void
 {
 	\$this->$1->removeElement(\$$2);
-	return \$this;
 }${0}
 endsnippet
 
@@ -450,9 +184,8 @@ endsnippet
 snippet col "Doctrine column" !b
 /**
  * @ORM\Column(name="${4:${1/([A-Z]+)/_\l$0/g}}", type="${5:string}"${6:, nullable=true})
- * @var ${7:string}
  */
-private \$${1:property}${2: = ${3:''}};${0}
+private ${7:string} \$${1:property}${2: = ${3:''}};${0}
 endsnippet
 
 snippet colid "Doctrine ID column" !b
@@ -460,9 +193,8 @@ snippet colid "Doctrine ID column" !b
  * @ORM\Id
  * @ORM\GeneratedValue
  * @ORM\Column(name="id", type="integer")
- * @var ?int
  */
-private \$id;${0}
+private ?int \$id;${0}
 endsnippet
 
 snippet col11 "Doctrine OneToOne" !b
@@ -524,4 +256,8 @@ snippet php "PHP file"
 declare(strict_types=1);
 
 namespace $0
+endsnippet
+
+snippet strict "Strict type declaration"
+declare(strict_types=1);
 endsnippet
