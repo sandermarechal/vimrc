@@ -321,3 +321,6 @@ nnoremap <C-ScrollWheelDown> <ScrollWheelRight>
 nnoremap <C-2-ScrollWheelDown> <2-ScrollWheelRight>
 nnoremap <C-3-ScrollWheelDown> <3-ScrollWheelRight>
 nnoremap <C-4-ScrollWheelDown> <4-ScrollWheelRight>
+
+" Force 4-wide tabs in yaml
+let g:yaml_recommended_style=0
