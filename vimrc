@@ -128,6 +128,9 @@ set wildmode=list:longest,full
 set laststatus=2
 set statusline=%F%{fugitive#statusline()}%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
+" Line endings
+set nofixendofline
+
 " Settings for netrw
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 0
@@ -302,9 +305,19 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 set diffopt+=vertical
 
 " Strip trailing whitespace on save
-autocmd FileType c,cpp,java,php,js autocmd BufWritePre <buffer> %s/\s\+$//e
+" autocmd FileType c,cpp,java,php,js autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Lilypond, manually copied from lilypond directory
 filetype off
 set runtimepath+=/home/sander/.vim/bundle/lilypond
 filetype on
+
+" Horizontal scrolling with mouse
+nnoremap <C-ScrollWheelUp> <ScrollWheelLeft>
+nnoremap <C-2-ScrollWheelUp> <2-ScrollWheelLeft>
+nnoremap <C-3-ScrollWheelUp> <3-ScrollWheelLeft>
+nnoremap <C-4-ScrollWheelUp> <4-ScrollWheelLeft>
+nnoremap <C-ScrollWheelDown> <ScrollWheelRight>
+nnoremap <C-2-ScrollWheelDown> <2-ScrollWheelRight>
+nnoremap <C-3-ScrollWheelDown> <3-ScrollWheelRight>
+nnoremap <C-4-ScrollWheelDown> <4-ScrollWheelRight>
