@@ -13,7 +13,6 @@ Bundle 'gmarik/vundle'
 Bundle 'FooSoft/vim-argwrap'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'SirVer/ultisnips'
-Bundle 'StanAngeloff/php.vim'
 Bundle 'austintaylor/vim-commaobject'
 Bundle 'bufexplorer.zip'
 Bundle 'delimitMate.vim'
@@ -324,6 +323,12 @@ nnoremap <C-4-ScrollWheelDown> <4-ScrollWheelRight>
 
 " Force 4-wide tabs in yaml
 let g:yaml_recommended_style=0
+
+" Show syntax region
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
 
 if filereadable(expand("~/.vim/vimrc.local"))
     source ~/.vim/vimrc.local
