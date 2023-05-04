@@ -79,6 +79,20 @@ public function set${1/\w+/\u$0/}($2 \$$1): void
 }${0}
 endsnippet
 
+snippet fgetset "Fluid getter and setter" !b
+public function get${1/\w+/\u$0/}(): ${2:string}
+{
+	return \$this->${1:property};
+}
+
+public function set${1/\w+/\u$0/}($2 \$$1): self
+{
+	\$this->$1 = \$$1;
+	return \$this;
+}${0}
+endsnippet
+
+
 snippet is "Isser" !b
 public function is${1/\w+/\u$0/}(): bool
 {
@@ -97,6 +111,14 @@ snippet set "Setter" !b
 public function set${1/\w+/\u$0/}(${2:string} \$$1): void
 {
 	\$this->${1:property} = \$$1;
+}${0}
+endsnippet
+
+snippet fset "Fluid setter" !b
+public function set${1/\w+/\u$0/}(${2:string} \$$1): self
+{
+	\$this->${1:property} = \$$1;
+	return \$this;
 }${0}
 endsnippet
 
