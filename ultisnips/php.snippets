@@ -67,6 +67,19 @@ public function set${1/\w+/\u$0/}(bool \$$1): void
 }${0}
 endsnippet
 
+snippet fisset "Isser and setter" !b
+public function is${1/\w+/\u$0/}(): bool
+{
+	return \$this->${1:property};
+}
+
+public function set${1/\w+/\u$0/}(bool \$$1): self
+{
+	\$this->$1 = \$$1;
+	return \$this;
+}${0}
+endsnippet
+
 snippet getset "Getter and setter" !b
 public function get${1/\w+/\u$0/}(): ${2:string}
 {
@@ -91,7 +104,6 @@ public function set${1/\w+/\u$0/}($2 \$$1): self
 	return \$this;
 }${0}
 endsnippet
-
 
 snippet is "Isser" !b
 public function is${1/\w+/\u$0/}(): bool
@@ -123,12 +135,15 @@ public function set${1/\w+/\u$0/}(${2:string} \$$1): self
 endsnippet
 
 snippet getset1n "Get, add and remove for 1:n relation" !b
+/**
+ * @return Collection<int, $3>
+ */
 public function get${1/\w+/\u$0/}(): Collection
 {
 	return \$this->${1:property};
 }
 
-public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): void
+public function add${4:${2/\w+/\u$0/}}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): void
 {
 	if (!\$this->$1->contains(\$$2)) {
 		\$this->$1[] = \$$2;
@@ -144,13 +159,42 @@ public function remove$4($3 \$$2): void
 }${0}
 endsnippet
 
+snippet fgetset1n "Get, add and remove for 1:n relation" !b
+/**
+ * @return Collection<int, $3>
+ */
+public function get${1/\w+/\u$0/}(): Collection
+{
+	return \$this->${1:property};
+}
+
+public function add${4:${2/\w+/\u$0/}}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): self
+{
+	if (!\$this->$1->contains(\$$2)) {
+		\$this->$1[] = \$$2;
+		\$$2->set${5:Reverse}(\$this);
+	}
+
+	return \$this;
+}
+
+public function remove$4($3 \$$2): self
+{
+	if (\$this->$1->removeElement(\$$2)) {
+		\$$2->set$5(null);
+	}
+
+	return \$this;
+}${0}
+endsnippet
+
 snippet getsetn1 "Get and set for n:1 relation" !b
 public function get${1/\w+/\u$0/}(): ${2:${1/\w+/\u$0/}}
 {
 	return \$this->${1:property};
 }
 
-public function set${1/\w+/\u$0/}($2 \$$1 = null): void
+public function set${1/\w+/\u$0/}($2 \$$1): void
 {
 	if (\$this->$1 == \$$1) {
 		return \$this;
@@ -169,7 +213,37 @@ public function set${1/\w+/\u$0/}($2 \$$1 = null): void
 }${0}
 endsnippet
 
+snippet fgetsetn1 "Get and set for n:1 relation" !b
+public function get${1/\w+/\u$0/}(): ${2:${1/\w+/\u$0/}}
+{
+	return \$this->${1:property};
+}
+
+public function set${1/\w+/\u$0/}($2 \$$1): self
+{
+	if (\$this->$1 == \$$1) {
+		return \$this;
+	}
+
+	\$old = \$this->$1;
+	\$this->$1 = \$$1;
+
+	if (\$old !== null) {
+		\$old->remove${3:Reverse}(\$this);
+	}
+
+	if (\$$1 !== null) {
+		\$$1->add$3(\$this);
+	}
+
+	return \$this;
+}${0}
+endsnippet
+
 snippet getsetmn "Get and set for n:m relations" !b
+/**
+ * @return Collection<int, ${3}>
+ */
 public function get${1/\w+/\u$0/}(): Collection
 {
 	return \$this->${1:property};
@@ -185,6 +259,31 @@ public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): void
 public function remove$4($3 \$$2): void
 {
 	\$this->$1->removeElement(\$$2);
+}${0}
+endsnippet
+
+snippet fgetsetmn "Get and set for n:m relations" !b
+/**
+ * @return Collection<int, ${3}>
+ */
+public function get${1/\w+/\u$0/}(): Collection
+{
+	return \$this->${1:property};
+}
+
+public function add${4:$3}(${3:${2/\w+/\u$0/}} \$${2:${1/\w$//}}): self
+{
+	if (!\$this->$1->contains(\$$2)) {
+		\$this->$1[] = \$$2;
+	}
+
+	return \$this;
+}
+
+public function remove$4($3 \$$2): self
+{
+	\$this->$1->removeElement(\$$2);
+	return \$this;
 }${0}
 endsnippet
 
